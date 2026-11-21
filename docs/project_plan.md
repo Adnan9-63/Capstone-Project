@@ -5,4 +5,4 @@
 3. Dashboard: 7 pages in Power BI, guide in powerbi/README.md.
 4. SQL and website: Kumari.
 5. Dates: 25 Nov freeze (no new analysis), 26 to 29 Nov write individual reports, submit 29 Nov (deadline 30 Nov, to confirm; guidelines PDF says 30 Dec).
-6. Optional: prices and a short survey (Rathod).
+6. Optional: prices (Rathod). Survey is dropped from scope.

@@ -15,5 +15,4 @@ Reports are individual and the committee asks each student about their own work,
 | SQL queries | | | |
 | Website | | | |
 | Price table | | | |
-| Survey | | | |
 | Slides | | | |
