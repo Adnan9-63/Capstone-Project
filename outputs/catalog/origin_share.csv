@@ -1,0 +1,17 @@
+platform,type,origin_group,titles,share
+Netflix,Movie,India,926,0.1512
+Netflix,Movie,Other,2394,0.3909
+Netflix,Movie,United States,2364,0.386
+Netflix,Movie,Unknown,440,0.0718
+Netflix,TV Show,India,81,0.0303
+Netflix,TV Show,Other,1357,0.5077
+Netflix,TV Show,United States,846,0.3165
+Netflix,TV Show,Unknown,389,0.1455
+Prime Video,Movie,India,222,0.0284
+Prime Video,Movie,Other,115,0.0147
+Prime Video,Movie,United States,232,0.0297
+Prime Video,Movie,Unknown,7235,0.9271
+Prime Video,TV Show,India,16,0.0086
+Prime Video,TV Show,Other,27,0.0146
+Prime Video,TV Show,United States,60,0.0324
+Prime Video,TV Show,Unknown,1751,0.9444

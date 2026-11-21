@@ -1,0 +1,55 @@
+platform,type,genre_group,titles,share
+Netflix,Movie,Action & Adventure,858,0.1401
+Netflix,Movie,Animation & Anime,70,0.0114
+Netflix,Movie,Comedy,1671,0.2729
+Netflix,Movie,Documentary & Factual,869,0.1419
+Netflix,Movie,Drama,2422,0.3955
+Netflix,Movie,Horror,357,0.0583
+Netflix,Movie,"Kids, Family & Teen",641,0.1047
+Netflix,Movie,Music & Concerts,375,0.0612
+Netflix,Movie,Other / not a genre,3490,0.5699
+Netflix,Movie,"Reality, Talk & Stand-up",343,0.056
+Netflix,Movie,Romance,616,0.1006
+Netflix,Movie,Sci-Fi & Fantasy,243,0.0397
+Netflix,Movie,Sports & Fitness,219,0.0358
+Netflix,Movie,"Thriller, Crime & Mystery",575,0.0939
+Netflix,TV Show,Action & Adventure,168,0.0629
+Netflix,TV Show,Animation & Anime,176,0.0658
+Netflix,TV Show,Comedy,581,0.2174
+Netflix,TV Show,Documentary & Factual,399,0.1493
+Netflix,TV Show,Drama,760,0.2843
+Netflix,TV Show,Horror,75,0.0281
+Netflix,TV Show,"Kids, Family & Teen",516,0.193
+Netflix,TV Show,Other / not a genre,1547,0.5788
+Netflix,TV Show,"Reality, Talk & Stand-up",311,0.1163
+Netflix,TV Show,Romance,370,0.1384
+Netflix,TV Show,Sci-Fi & Fantasy,84,0.0314
+Netflix,TV Show,"Thriller, Crime & Mystery",583,0.2181
+Prime Video,Movie,Action & Adventure,1559,0.1998
+Prime Video,Movie,Animation & Anime,296,0.0379
+Prime Video,Movie,Comedy,1819,0.2331
+Prime Video,Movie,Documentary & Factual,679,0.087
+Prime Video,Movie,Drama,3203,0.4104
+Prime Video,Movie,Horror,844,0.1081
+Prime Video,Movie,"Kids, Family & Teen",749,0.096
+Prime Video,Movie,Music & Concerts,149,0.0191
+Prime Video,Movie,Other / not a genre,1672,0.2142
+Prime Video,Movie,"Reality, Talk & Stand-up",2,0.0003
+Prime Video,Movie,Romance,592,0.0759
+Prime Video,Movie,Sci-Fi & Fantasy,432,0.0554
+Prime Video,Movie,Sports & Fitness,178,0.0228
+Prime Video,Movie,"Thriller, Crime & Mystery",1380,0.1768
+Prime Video,TV Show,Action & Adventure,167,0.0901
+Prime Video,TV Show,Animation & Anime,307,0.1656
+Prime Video,TV Show,Comedy,278,0.1499
+Prime Video,TV Show,Documentary & Factual,314,0.1694
+Prime Video,TV Show,Drama,481,0.2594
+Prime Video,TV Show,Horror,30,0.0162
+Prime Video,TV Show,"Kids, Family & Teen",418,0.2255
+Prime Video,TV Show,Music & Concerts,6,0.0032
+Prime Video,TV Show,Other / not a genre,693,0.3738
+Prime Video,TV Show,"Reality, Talk & Stand-up",163,0.0879
+Prime Video,TV Show,Romance,82,0.0442
+Prime Video,TV Show,Sci-Fi & Fantasy,74,0.0399
+Prime Video,TV Show,Sports & Fitness,65,0.0351
+Prime Video,TV Show,"Thriller, Crime & Mystery",120,0.0647

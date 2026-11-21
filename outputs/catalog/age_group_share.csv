@@ -1,0 +1,17 @@
+platform,type,age_group,titles,share
+Netflix,Movie,Adult,2858,0.4667
+Netflix,Movie,Kids and all ages,442,0.0722
+Netflix,Movie,Not rated,82,0.0134
+Netflix,Movie,Teen and parental guidance,2742,0.4477
+Netflix,TV Show,Adult,1146,0.4287
+Netflix,TV Show,Kids and all ages,466,0.1743
+Netflix,TV Show,Not rated,7,0.0026
+Netflix,TV Show,Teen and parental guidance,1054,0.3943
+Prime Video,Movie,Adult,2111,0.2705
+Prime Video,Movie,Kids and all ages,1366,0.175
+Prime Video,Movie,Not rated,560,0.0718
+Prime Video,Movie,Teen and parental guidance,3767,0.4827
+Prime Video,TV Show,Adult,223,0.1203
+Prime Video,TV Show,Kids and all ages,571,0.308
+Prime Video,TV Show,Not rated,140,0.0755
+Prime Video,TV Show,Teen and parental guidance,920,0.4962

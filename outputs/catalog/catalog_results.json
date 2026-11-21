@@ -1,0 +1,260 @@
+{
+  "type_mix": {
+    "counts": {
+      "Netflix": {
+        "Movie": 6124,
+        "TV Show": 2673
+      },
+      "Prime Video": {
+        "Movie": 7804,
+        "TV Show": 1854
+      }
+    },
+    "share_movies": {
+      "Netflix": 0.6961464135500739,
+      "Prime Video": 0.8080347898115552
+    },
+    "chi2": 310.7155575300762,
+    "p": 1.5252669903677252e-69,
+    "cramers_v": 0.1297551113468053
+  },
+  "years": {
+    "all": {
+      "median": {
+        "Netflix": 2017.0,
+        "Prime Video": 2016.0
+      },
+      "share_2015_plus": {
+        "Netflix": 0.7059224735705354,
+        "Prime Video": 0.5604680057983019
+      },
+      "p": 4.976788734414851e-22,
+      "rank_biserial": 0.0818617733652447
+    },
+    "movies": {
+      "median": {
+        "Netflix": 2016.0,
+        "Prime Video": 2015.0
+      },
+      "share_2015_plus": {
+        "Netflix": 0.6554539516655781,
+        "Prime Video": 0.5288313685289595
+      },
+      "p": 1.7647783625962514e-09,
+      "rank_biserial": 0.059178732640080334
+    }
+  },
+  "release_period_share": {
+    "Netflix": {
+      "Before 1980": 0.01386836421507332,
+      "1980-1999": 0.04569739683983176,
+      "2000-2009": 0.0919631692622485,
+      "2010-2021": 0.8484710696828465
+    },
+    "Prime Video": {
+      "Before 1980": 0.08448954234831228,
+      "1980-1999": 0.09059846759163388,
+      "2000-2009": 0.12259266928970801,
+      "2010-2021": 0.7023193207703459
+    }
+  },
+  "genre_share": {
+    "Netflix|Movie|Action & Adventure": 0.14010450685826256,
+    "Netflix|Movie|Animation & Anime": 0.011430437622468974,
+    "Netflix|Movie|Comedy": 0.27286087524493796,
+    "Netflix|Movie|Documentary & Factual": 0.14190071848465055,
+    "Netflix|Movie|Drama": 0.3954931417374265,
+    "Netflix|Movie|Horror": 0.05829523187459177,
+    "Netflix|Movie|Kids, Family & Teen": 0.10467015022860875,
+    "Netflix|Movie|Music & Concerts": 0.061234487263226646,
+    "Netflix|Movie|Other / not a genre": 0.569888961463096,
+    "Netflix|Movie|Reality, Talk & Stand-up": 0.056009144350097975,
+    "Netflix|Movie|Romance": 0.10058785107772697,
+    "Netflix|Movie|Sci-Fi & Fantasy": 0.03967994774657087,
+    "Netflix|Movie|Sports & Fitness": 0.035760940561724366,
+    "Netflix|Movie|Thriller, Crime & Mystery": 0.09389288047028087,
+    "Netflix|TV Show|Action & Adventure": 0.06285072951739619,
+    "Netflix|TV Show|Animation & Anime": 0.06584362139917696,
+    "Netflix|TV Show|Comedy": 0.21735877291432848,
+    "Netflix|TV Show|Documentary & Factual": 0.14927048260381592,
+    "Netflix|TV Show|Drama": 0.2843247287691732,
+    "Netflix|TV Show|Horror": 0.028058361391694726,
+    "Netflix|TV Show|Kids, Family & Teen": 0.19304152637485972,
+    "Netflix|TV Show|Other / not a genre": 0.5787504676393566,
+    "Netflix|TV Show|Reality, Talk & Stand-up": 0.11634867190422746,
+    "Netflix|TV Show|Romance": 0.13842124953236065,
+    "Netflix|TV Show|Sci-Fi & Fantasy": 0.031425364758698095,
+    "Netflix|TV Show|Thriller, Crime & Mystery": 0.21810699588477367,
+    "Prime Video|Movie|Action & Adventure": 0.19976934905176832,
+    "Prime Video|Movie|Animation & Anime": 0.037929267042542285,
+    "Prime Video|Movie|Comedy": 0.23308559712967708,
+    "Prime Video|Movie|Documentary & Factual": 0.08700666324961558,
+    "Prime Video|Movie|Drama": 0.4104305484366991,
+    "Prime Video|Movie|Horror": 0.10814966683751923,
+    "Prime Video|Movie|Kids, Family & Teen": 0.09597642234751409,
+    "Prime Video|Movie|Music & Concerts": 0.019092772936955407,
+    "Prime Video|Movie|Other / not a genre": 0.2142491030240902,
+    "Prime Video|Movie|Reality, Talk & Stand-up": 0.00025627883136852895,
+    "Prime Video|Movie|Romance": 0.07585853408508457,
+    "Prime Video|Movie|Sci-Fi & Fantasy": 0.055356227575602254,
+    "Prime Video|Movie|Sports & Fitness": 0.022808815991799077,
+    "Prime Video|Movie|Thriller, Crime & Mystery": 0.176832393644285,
+    "Prime Video|TV Show|Action & Adventure": 0.09007551240560949,
+    "Prime Video|TV Show|Animation & Anime": 0.16558791801510248,
+    "Prime Video|TV Show|Comedy": 0.1499460625674218,
+    "Prime Video|TV Show|Documentary & Factual": 0.16936353829557713,
+    "Prime Video|TV Show|Drama": 0.2594390507011866,
+    "Prime Video|TV Show|Horror": 0.016181229773462782,
+    "Prime Video|TV Show|Kids, Family & Teen": 0.22545846817691478,
+    "Prime Video|TV Show|Music & Concerts": 0.003236245954692557,
+    "Prime Video|TV Show|Other / not a genre": 0.3737864077669903,
+    "Prime Video|TV Show|Reality, Talk & Stand-up": 0.08791801510248112,
+    "Prime Video|TV Show|Romance": 0.04422869471413161,
+    "Prime Video|TV Show|Sci-Fi & Fantasy": 0.039913700107874865,
+    "Prime Video|TV Show|Sports & Fitness": 0.03505933117583603,
+    "Prime Video|TV Show|Thriller, Crime & Mystery": 0.06472491909385113
+  },
+  "no_real_genre_share": {
+    "Netflix|Movie": 0.009960809928151534,
+    "Netflix|TV Show": 0.007856341189674524,
+    "Prime Video|Movie": 0.03831368528959508,
+    "Prime Video|TV Show": 0.17475728155339806
+  },
+  "age_share": {
+    "Netflix|Movie|Adult": 0.4666884389288047,
+    "Netflix|Movie|Kids and all ages": 0.07217504898758981,
+    "Netflix|Movie|Not rated": 0.013389941214892228,
+    "Netflix|Movie|Teen and parental guidance": 0.4477465708687133,
+    "Netflix|TV Show|Adult": 0.4287317620650954,
+    "Netflix|TV Show|Kids and all ages": 0.1743359521137299,
+    "Netflix|TV Show|Not rated": 0.002618780396558174,
+    "Netflix|TV Show|Teen and parental guidance": 0.3943135054246165,
+    "Prime Video|Movie|Adult": 0.2705023065094823,
+    "Prime Video|Movie|Kids and all ages": 0.1750384418247053,
+    "Prime Video|Movie|Not rated": 0.0717580727831881,
+    "Prime Video|Movie|Teen and parental guidance": 0.4827011788826243,
+    "Prime Video|TV Show|Adult": 0.1202804746494067,
+    "Prime Video|TV Show|Kids and all ages": 0.307982740021575,
+    "Prime Video|TV Show|Not rated": 0.07551240560949299,
+    "Prime Video|TV Show|Teen and parental guidance": 0.4962243797195254
+  },
+  "age_tests": {
+    "Movie": {
+      "chi2": 642.4424732520206,
+      "p": 3.1288840053306397e-140,
+      "cramers_v": 0.21989735149460407
+    },
+    "TV Show": {
+      "chi2": 456.68391082230465,
+      "p": 6.797493139475293e-100,
+      "cramers_v": 0.3229020487151686
+    }
+  },
+  "runtime": {
+    "n": {
+      "Netflix": 6124,
+      "Prime Video": 7804
+    },
+    "median": {
+      "Netflix": 98.0,
+      "Prime Video": 91.0
+    },
+    "mean": {
+      "Netflix": 99.5560091443501,
+      "Prime Video": 91.33175294720657
+    },
+    "q1": {
+      "Netflix": 87.0,
+      "Prime Video": 75.0
+    },
+    "q3": {
+      "Netflix": 114.0,
+      "Prime Video": 106.0
+    },
+    "p": 2.685364419974383e-88,
+    "rank_biserial": 0.19633019510335026
+  },
+  "seasons": {
+    "n": {
+      "Netflix": 2673,
+      "Prime Video": 1854
+    },
+    "median": {
+      "Netflix": 1.0,
+      "Prime Video": 1.0
+    },
+    "share_one_season": {
+      "Netflix": 0.67003367003367,
+      "Prime Video": 0.7238403451995685
+    },
+    "share_three_plus": {
+      "Netflix": 0.17096894874672652,
+      "Prime Video": 0.15264293419633226
+    },
+    "p": 0.0005539385445187863,
+    "rank_biserial": 0.04914965306910646
+  },
+  "country_known_share": {
+    "Netflix": 0.9057633284074116,
+    "Prime Video": 0.06957962311037481
+  },
+  "origin_share": {
+    "Netflix|Movie|India": 0.15120836054866102,
+    "Netflix|Movie|Other": 0.39092096668843895,
+    "Netflix|Movie|United States": 0.38602220770738077,
+    "Netflix|Movie|Unknown": 0.07184846505551927,
+    "Netflix|TV Show|India": 0.030303030303030304,
+    "Netflix|TV Show|Other": 0.5076692854470632,
+    "Netflix|TV Show|United States": 0.3164983164983165,
+    "Netflix|TV Show|Unknown": 0.14552936775158998,
+    "Prime Video|Movie|India": 0.028446950281906715,
+    "Prime Video|Movie|Other": 0.014736032803690416,
+    "Prime Video|Movie|United States": 0.02972834443874936,
+    "Prime Video|Movie|Unknown": 0.9270886724756535,
+    "Prime Video|TV Show|India": 0.008629989212513484,
+    "Prime Video|TV Show|Other": 0.014563106796116505,
+    "Prime Video|TV Show|United States": 0.032362459546925564,
+    "Prime Video|TV Show|Unknown": 0.9444444444444444
+  },
+  "netflix_known_origin_share": {
+    "Movie": {
+      "India": 0.16291344123856438,
+      "United States": 0.4159042927515834,
+      "Other": 0.4211822660098522
+    },
+    "TV Show": {
+      "India": 0.03546409807355517,
+      "United States": 0.37040280210157617,
+      "Other": 0.5941330998248686
+    }
+  },
+  "netflix_imdb_by_origin": {
+    "rows": [
+      {
+        "origin": "India",
+        "n": 427,
+        "median": 6.4,
+        "mean": 6.236533957845433,
+        "share_7_plus": 0.32084309133489464
+      },
+      {
+        "origin": "United States",
+        "n": 774,
+        "median": 6.3,
+        "mean": 6.2328165374677,
+        "share_7_plus": 0.26744186046511625
+      },
+      {
+        "origin": "Other",
+        "n": 890,
+        "median": 6.3,
+        "mean": 6.233707865168539,
+        "share_7_plus": 0.2550561797752809
+      }
+    ],
+    "india_vs_us_p": 0.4701362950733299,
+    "india_vs_us_r": 0.02514084805354333,
+    "linked_movies": 2135,
+    "prime_linked_with_known_origin": 186
+  }
+}

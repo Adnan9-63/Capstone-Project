@@ -1,0 +1,74 @@
+{
+  "rows_in_file": 18475,
+  "titles_missing": 2,
+  "titles_damaged_into_dates": 8,
+  "rating_cells_with_runtime_fixed": 3,
+  "repeated_rows_removed": 20,
+  "repeated_rows_examples": [
+    [
+      "Prime Video",
+      "Song Of Texas",
+      1943
+    ],
+    [
+      "Prime Video",
+      "Girls in Chains",
+      1943
+    ],
+    [
+      "Prime Video",
+      "Asintombstonetest-target",
+      2019
+    ],
+    [
+      "Prime Video",
+      "Mixed Up",
+      2020
+    ],
+    [
+      "Prime Video",
+      "A Friendship",
+      2021
+    ],
+    [
+      "Prime Video",
+      "Angel And The Badman",
+      1947
+    ],
+    [
+      "Prime Video",
+      "Adrift in Soho",
+      2020
+    ],
+    [
+      "Prime Video",
+      "The Squid And The Whale",
+      2005
+    ]
+  ],
+  "rows_after_cleaning": 18455,
+  "unmapped_age_ratings": [],
+  "unmapped_genre_labels": [],
+  "titles_on_both_platforms": 195,
+  "imdb_link": {
+    "Netflix": {
+      "movies": 6124,
+      "with_imdb": 2135
+    },
+    "Prime Video": {
+      "movies": 7804,
+      "with_imdb": 1191
+    }
+  },
+  "final": {
+    "titles": 18455,
+    "by_platform_type": {
+      "Netflix|Movie": 6124,
+      "Netflix|TV Show": 2673,
+      "Prime Video|Movie": 7804,
+      "Prime Video|TV Show": 1854
+    },
+    "genre_rows": 36625,
+    "genre_group_rows": 35071
+  }
+}
