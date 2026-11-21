@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Generated database (run src/build_database.py to recreate)
+*.db
+
+# Extra raw data files (too large / not used; put them in data/raw/extra/ locally)
+data/raw/extra/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Individual reports (submitted on Moodle; not committed to the shared repo)
+reports/*/
+
+# Private / AI workflow files
+docs/handoff_prompt.md
+
+# Power BI file (binary; share via OneDrive or attach to report submission)
+powerbi/*.pbix
