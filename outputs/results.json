@@ -1,0 +1,150 @@
+{
+  "file": "ott_cleaned.csv",
+  "rows_in_file": 24664,
+  "records_unique": 15364,
+  "title_year_pairs_unique": 15160,
+  "on_both_platforms": 204,
+  "year_min": 1912,
+  "year_max": 2021,
+  "desc": {
+    "Netflix": {
+      "records": 2759,
+      "rated": 2725,
+      "missing": 34,
+      "mean": 6.233357798165138,
+      "median": 6.3,
+      "sd": 1.1076323414706715,
+      "q1": 5.5,
+      "q3": 7.0,
+      "min": 1.5,
+      "max": 9.0,
+      "share_high": 0.2726605504587156
+    },
+    "Prime Video": {
+      "records": 12605,
+      "rated": 12301,
+      "missing": 304,
+      "mean": 5.821973823266402,
+      "median": 6.0,
+      "sd": 1.3316952480902933,
+      "q1": 5.0,
+      "q3": 6.8,
+      "min": 1.0,
+      "max": 9.8,
+      "share_high": 0.20730021949435004
+    }
+  },
+  "median_year": {
+    "Netflix": 2017.0,
+    "Prime Video": 2011.0
+  },
+  "share_since_2010": {
+    "Netflix": 0.8517578832910475,
+    "Prime Video": 0.5481951606505355
+  },
+  "mwu": {
+    "U": 19748400.5,
+    "p": 3.25974644396867e-48,
+    "rank_biserial": 0.17829760987582866,
+    "prob_netflix_higher": 0.5891488049379143
+  },
+  "median_diff": {
+    "value": 0.2999999999999998,
+    "ci": [
+      0.2999999999999998,
+      0.5
+    ]
+  },
+  "share_diff": {
+    "value": 0.06536033096436558,
+    "ci": [
+      0.047348024961049666,
+      0.08381384000256564
+    ]
+  },
+  "mean_diff": {
+    "value": 0.4113839748987367,
+    "ci": [
+      0.3634024315170914,
+      0.45816915981321726
+    ]
+  },
+  "era": [
+    {
+      "era": "Before 1980",
+      "n_netflix_titles": 46,
+      "n_prime_titles": 2098,
+      "share_of_netflix": 0.016672707502718376,
+      "share_of_prime": 0.16644188813962713,
+      "n_netflix": 46,
+      "n_prime": 2092,
+      "median_netflix": 6.85,
+      "median_prime": 6.0,
+      "mean_netflix": 6.854347826086958,
+      "mean_prime": 5.909847036328872,
+      "high_netflix": 0.4782608695652174,
+      "high_prime": 0.1586998087954111,
+      "p": 7.134234263676777e-09,
+      "rank_biserial": 0.4979632554659572
+    },
+    {
+      "era": "1980-1999",
+      "n_netflix_titles": 116,
+      "n_prime_titles": 1375,
+      "share_of_netflix": 0.04204421891989851,
+      "share_of_prime": 0.10908369694565649,
+      "n_netflix": 116,
+      "n_prime": 1367,
+      "median_netflix": 6.6,
+      "median_prime": 6.0,
+      "mean_netflix": 6.622413793103448,
+      "mean_prime": 5.910753474762253,
+      "high_netflix": 0.3275862068965517,
+      "high_prime": 0.20409656181419167,
+      "p": 5.153182139780266e-09,
+      "rank_biserial": 0.3261925182251595
+    },
+    {
+      "era": "2000-2009",
+      "n_netflix_titles": 247,
+      "n_prime_titles": 2222,
+      "share_of_netflix": 0.08952519028633563,
+      "share_of_prime": 0.17627925426418087,
+      "n_netflix": 247,
+      "n_prime": 2165,
+      "median_netflix": 6.6,
+      "median_prime": 6.0,
+      "mean_netflix": 6.505668016194332,
+      "mean_prime": 5.78203233256351,
+      "high_netflix": 0.3805668016194332,
+      "high_prime": 0.23094688221709006,
+      "p": 2.4011545968911376e-14,
+      "rank_biserial": 0.2957260801675534
+    },
+    {
+      "era": "2010-2021",
+      "n_netflix_titles": 2350,
+      "n_prime_titles": 6910,
+      "share_of_netflix": 0.8517578832910475,
+      "share_of_prime": 0.5481951606505355,
+      "n_netflix": 2316,
+      "n_prime": 6677,
+      "median_netflix": 6.3,
+      "median_prime": 5.9,
+      "mean_netflix": 6.172495682210708,
+      "mean_prime": 5.789216714093155,
+      "high_netflix": 0.25431778929188253,
+      "high_prime": 0.21551595027707054,
+      "p": 3.365024146847279e-30,
+      "rank_biserial": 0.15894974188970834
+    }
+  ],
+  "standardised_prime": {
+    "mean": 5.7956946832206055,
+    "share_high": 0.21547000921847487,
+    "netflix_mean": 6.233357798165138,
+    "netflix_share_high": 0.2726605504587156,
+    "prime_mean": 5.821973823266402,
+    "prime_share_high": 0.20730021949435004
+  }
+}

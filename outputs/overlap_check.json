@@ -1,0 +1,44 @@
+{
+  "main_file": {
+    "rows": 24664,
+    "title_records": 15364,
+    "netflix": 2759,
+    "prime": 12605,
+    "year_range": [
+      1912,
+      2021
+    ]
+  },
+  "amazon_prime_titles": {
+    "rows": 9668,
+    "movies": 7814,
+    "tv_shows": 1854,
+    "year_range": [
+      1920,
+      2021
+    ],
+    "country_filled": 672,
+    "age_rating_filled": 9331,
+    "has_imdb_rating": false
+  },
+  "netflix_tr2": {
+    "rows": 6025,
+    "movies": 3857,
+    "tv_shows": 2168,
+    "year_range": [
+      1951,
+      2024
+    ],
+    "has_imdb_rating": true,
+    "has_votes": true,
+    "available_in_india_share": 0.901908713692946
+  },
+  "match_title_and_year": {
+    "netflix_matched": 508,
+    "netflix_total": 2759,
+    "netflix_share": 0.18412468285610728,
+    "prime_matched": 1210,
+    "prime_total": 12605,
+    "prime_share": 0.09599365331217771
+  }
+}

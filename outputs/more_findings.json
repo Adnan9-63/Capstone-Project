@@ -1,0 +1,351 @@
+{
+  "genres_common": [
+    "Action & Adventure",
+    "Animation",
+    "Biography",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family"
+  ],
+  "genre_tests": [
+    {
+      "genre": "Action & Adventure",
+      "n_netflix": 742,
+      "n_prime": 3219,
+      "median_netflix": 6.2,
+      "median_prime": 5.6,
+      "mean_netflix": 6.012938005390836,
+      "mean_prime": 5.437993165579373,
+      "r": 0.24884215938217236,
+      "p": 3.4778536492698805e-26,
+      "p_holm": 2.7822829194159044e-25
+    },
+    {
+      "genre": "Animation",
+      "n_netflix": 195,
+      "n_prime": 334,
+      "median_netflix": 6.5,
+      "median_prime": 6.2,
+      "mean_netflix": 6.2379487179487185,
+      "mean_prime": 6.002994011976049,
+      "r": 0.0767541839398127,
+      "p": 0.14046736374513916,
+      "p_holm": 0.4214020912354175
+    },
+    {
+      "genre": "Biography",
+      "n_netflix": 32,
+      "n_prime": 448,
+      "median_netflix": 6.800000000000001,
+      "median_prime": 6.95,
+      "mean_netflix": 6.78125,
+      "mean_prime": 6.8265625,
+      "r": -0.091796875,
+      "p": 0.38538357975808224,
+      "p_holm": 0.48050058525283434
+    },
+    {
+      "genre": "Comedy",
+      "n_netflix": 1184,
+      "n_prime": 3443,
+      "median_netflix": 6.2,
+      "median_prime": 5.9,
+      "mean_netflix": 6.143834459459459,
+      "mean_prime": 5.769793784490271,
+      "r": 0.17395312463203827,
+      "p": 3.711565523629127e-19,
+      "p_holm": 2.226939314177476e-18
+    },
+    {
+      "genre": "Crime",
+      "n_netflix": 206,
+      "n_prime": 1377,
+      "median_netflix": 6.3,
+      "median_prime": 5.7,
+      "mean_netflix": 6.143689320388349,
+      "mean_prime": 5.669498910675381,
+      "r": 0.2474141760263977,
+      "p": 9.651691791359075e-09,
+      "p_holm": 4.8258458956795376e-08
+    },
+    {
+      "genre": "Documentary",
+      "n_netflix": 239,
+      "n_prime": 1937,
+      "median_netflix": 6.9,
+      "median_prime": 7.1,
+      "mean_netflix": 6.8456066945606695,
+      "mean_prime": 6.956014455343315,
+      "r": -0.10952104254735462,
+      "p": 0.005638888216041013,
+      "p_holm": 0.022555552864164052
+    },
+    {
+      "genre": "Drama",
+      "n_netflix": 1303,
+      "n_prime": 4724,
+      "median_netflix": 6.4,
+      "median_prime": 6.1,
+      "mean_netflix": 6.293092862624712,
+      "mean_prime": 5.967040643522439,
+      "r": 0.1765131335685317,
+      "p": 1.459098810887e-22,
+      "p_holm": 1.0213691676209e-21
+    },
+    {
+      "genre": "Family",
+      "n_netflix": 61,
+      "n_prime": 583,
+      "median_netflix": 6.4,
+      "median_prime": 6.3,
+      "mean_netflix": 6.319672131147542,
+      "mean_prime": 6.086277873070326,
+      "r": 0.09130275848494218,
+      "p": 0.24025029262641717,
+      "p_holm": 0.48050058525283434
+    }
+  ],
+  "genre_share": {
+    "Netflix": {
+      "Action & Adventure": 0.26930047118521205,
+      "Animation": 0.0721275824574121,
+      "Anime": 0.005799202609641174,
+      "Biography": 0.011598405219282348,
+      "Comedy": 0.43385284523378037,
+      "Crime": 0.07502718376223269,
+      "Documentary": 0.09061254077564335,
+      "Drama": 0.47625951431678143,
+      "Family": 0.02247191011235955
+    },
+    "Prime Video": {
+      "Action & Adventure": 0.25775485918286395,
+      "Animation": 0.02800476001586672,
+      "Biography": 0.03657278857596192,
+      "Comedy": 0.27623958746529154,
+      "Crime": 0.11011503371677905,
+      "Documentary": 0.16985323284410947,
+      "Drama": 0.3752479174930583,
+      "Family": 0.047838159460531535,
+      "Fantasy": 0.00848869496231654,
+      "Horror": 0.11019436731455771,
+      "Mystery": 0.06069020230067434,
+      "Romance": 0.05950019833399445,
+      "Thriller": 0.09234430781435939
+    }
+  },
+  "genres_only_netflix": [
+    "Anime"
+  ],
+  "genres_only_prime": [
+    "Fantasy",
+    "Horror",
+    "Mystery",
+    "Romance",
+    "Thriller"
+  ],
+  "avg_genres_per_title": {
+    "Netflix": 1.4570496556723451,
+    "Prime Video": 1.632844109480365
+  },
+  "multi_genre_share": {
+    "Netflix": 0.3816600217470098,
+    "Prime Video": 0.48425228084093613
+  },
+  "overlap": {
+    "titles": 200,
+    "same_rating": 0.985,
+    "median_rating": 6.4,
+    "median_year": 2012.0,
+    "median_rating_rest": 6.0
+  },
+  "decade_trend": [
+    {
+      "decade": 1910,
+      "Netflix": {
+        "n": 0,
+        "median": null
+      },
+      "Prime Video": {
+        "n": 13,
+        "median": 5.8
+      }
+    },
+    {
+      "decade": 1920,
+      "Netflix": {
+        "n": 1,
+        "median": 5.0
+      },
+      "Prime Video": {
+        "n": 43,
+        "median": 6.8
+      }
+    },
+    {
+      "decade": 1930,
+      "Netflix": {
+        "n": 0,
+        "median": null
+      },
+      "Prime Video": {
+        "n": 347,
+        "median": 5.8
+      }
+    },
+    {
+      "decade": 1940,
+      "Netflix": {
+        "n": 11,
+        "median": 6.6
+      },
+      "Prime Video": {
+        "n": 353,
+        "median": 6.1
+      }
+    },
+    {
+      "decade": 1950,
+      "Netflix": {
+        "n": 5,
+        "median": 6.5
+      },
+      "Prime Video": {
+        "n": 319,
+        "median": 6.1
+      }
+    },
+    {
+      "decade": 1960,
+      "Netflix": {
+        "n": 6,
+        "median": 7.199999999999999
+      },
+      "Prime Video": {
+        "n": 328,
+        "median": 5.8
+      }
+    },
+    {
+      "decade": 1970,
+      "Netflix": {
+        "n": 23,
+        "median": 6.9
+      },
+      "Prime Video": {
+        "n": 689,
+        "median": 6.0
+      }
+    },
+    {
+      "decade": 1980,
+      "Netflix": {
+        "n": 40,
+        "median": 6.8
+      },
+      "Prime Video": {
+        "n": 590,
+        "median": 6.0
+      }
+    },
+    {
+      "decade": 1990,
+      "Netflix": {
+        "n": 76,
+        "median": 6.55
+      },
+      "Prime Video": {
+        "n": 777,
+        "median": 6.1
+      }
+    },
+    {
+      "decade": 2000,
+      "Netflix": {
+        "n": 247,
+        "median": 6.6
+      },
+      "Prime Video": {
+        "n": 2165,
+        "median": 6.0
+      }
+    },
+    {
+      "decade": 2010,
+      "Netflix": {
+        "n": 2068,
+        "median": 6.3
+      },
+      "Prime Video": {
+        "n": 6450,
+        "median": 5.9
+      }
+    },
+    {
+      "decade": 2020,
+      "Netflix": {
+        "n": 248,
+        "median": 6.0
+      },
+      "Prime Video": {
+        "n": 227,
+        "median": 5.6
+      }
+    }
+  ],
+  "share_at_least": {
+    "6.0": {
+      "Netflix": 0.6374311926605505,
+      "Prime Video": 0.5030485326396228
+    },
+    "6.5": {
+      "Netflix": 0.45688073394495415,
+      "Prime Video": 0.35029672384358995
+    },
+    "7.0": {
+      "Netflix": 0.2726605504587156,
+      "Prime Video": 0.20730021949435004
+    },
+    "7.5": {
+      "Netflix": 0.12220183486238533,
+      "Prime Video": 0.09340704007804243
+    },
+    "8.0": {
+      "Netflix": 0.04293577981651376,
+      "Prime Video": 0.03463133078611495
+    }
+  },
+  "share_below_5": {
+    "Netflix": 0.12036697247706422,
+    "Prime Video": 0.24274449231769774
+  },
+  "age_known_share": {
+    "Netflix": 0.48314606741573035,
+    "Prime Video": 0.389289964299881
+  },
+  "age_mix_among_known": {
+    "Netflix": {
+      "18+": 0.4298574643660915,
+      "13+": 0.2115528882220555,
+      "7+": 0.20255063765941486,
+      "all": 0.0900225056264066,
+      "16+": 0.06601650412603151
+    },
+    "Prime Video": {
+      "18+": 0.4837986549826778,
+      "7+": 0.18687589158345222,
+      "13+": 0.18483798654982678,
+      "all": 0.08701854493580599,
+      "16+": 0.05746892194823721
+    }
+  },
+  "titles": {
+    "Netflix": 2759,
+    "Prime Video": 12605
+  },
+  "share_2015_plus": {
+    "Netflix": 0.699166364624864,
+    "Prime Video": 0.3197937326457755
+  }
+}
