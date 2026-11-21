@@ -1,0 +1,27 @@
+raw_rating,age_group
+G,Kids and all ages
+TV-Y,Kids and all ages
+TV-Y7,Kids and all ages
+TV-Y7-FV,Kids and all ages
+TV-G,Kids and all ages
+ALL,Kids and all ages
+ALL_AGES,Kids and all ages
+7+,Kids and all ages
+PG,Teen and parental guidance
+PG-13,Teen and parental guidance
+TV-PG,Teen and parental guidance
+TV-14,Teen and parental guidance
+13+,Teen and parental guidance
+16+,Teen and parental guidance
+16,Teen and parental guidance
+AGES_16_,Teen and parental guidance
+R,Adult
+NC-17,Adult
+TV-MA,Adult
+18+,Adult
+AGES_18_,Adult
+NR,Not rated
+UR,Not rated
+UNRATED,Not rated
+TV-NR,Not rated
+NOT_RATE,Not rated

@@ -1,0 +1,71 @@
+raw_label,genre_group
+Dramas,Drama
+TV Dramas,Drama
+Drama,Drama
+Comedies,Comedy
+TV Comedies,Comedy
+Comedy,Comedy
+Action & Adventure,Action & Adventure
+TV Action & Adventure,Action & Adventure
+Action,Action & Adventure
+Adventure,Action & Adventure
+Thrillers,"Thriller, Crime & Mystery"
+TV Thrillers,"Thriller, Crime & Mystery"
+Crime TV Shows,"Thriller, Crime & Mystery"
+TV Mysteries,"Thriller, Crime & Mystery"
+Suspense,"Thriller, Crime & Mystery"
+Horror Movies,Horror
+TV Horror,Horror
+Horror,Horror
+Romantic Movies,Romance
+Romantic TV Shows,Romance
+Romance,Romance
+Sci-Fi & Fantasy,Sci-Fi & Fantasy
+TV Sci-Fi & Fantasy,Sci-Fi & Fantasy
+Science Fiction,Sci-Fi & Fantasy
+Fantasy,Sci-Fi & Fantasy
+Documentaries,Documentary & Factual
+Docuseries,Documentary & Factual
+Documentary,Documentary & Factual
+Science & Nature TV,Documentary & Factual
+Children & Family Movies,"Kids, Family & Teen"
+Kids' TV,"Kids, Family & Teen"
+Kids,"Kids, Family & Teen"
+Teen TV Shows,"Kids, Family & Teen"
+Young Adult Audience,"Kids, Family & Teen"
+Anime Series,Animation & Anime
+Anime Features,Animation & Anime
+Animation,Animation & Anime
+Anime,Animation & Anime
+Reality TV,"Reality, Talk & Stand-up"
+Stand-Up Comedy,"Reality, Talk & Stand-up"
+Stand-Up Comedy & Talk Shows,"Reality, Talk & Stand-up"
+Unscripted,"Reality, Talk & Stand-up"
+Talk Show and Variety,"Reality, Talk & Stand-up"
+Music & Musicals,Music & Concerts
+Music Videos and Concerts,Music & Concerts
+Sports Movies,Sports & Fitness
+Sports,Sports & Fitness
+Fitness,Sports & Fitness
+International Movies,Other / not a genre
+International TV Shows,Other / not a genre
+International,Other / not a genre
+Independent Movies,Other / not a genre
+Classic Movies,Other / not a genre
+Cult Movies,Other / not a genre
+Classic & Cult TV,Other / not a genre
+LGBTQ Movies,Other / not a genre
+LGBTQ,Other / not a genre
+Faith & Spirituality,Other / not a genre
+Faith and Spirituality,Other / not a genre
+British TV Shows,Other / not a genre
+Korean TV Shows,Other / not a genre
+Spanish-Language TV Shows,Other / not a genre
+Movies,Other / not a genre
+TV Shows,Other / not a genre
+Special Interest,Other / not a genre
+Arts Entertainment and Culture,Other / not a genre
+Arthouse,Other / not a genre
+Western,Other / not a genre
+Military and War,Other / not a genre
+Historical,Other / not a genre
