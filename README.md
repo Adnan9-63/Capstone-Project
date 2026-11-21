@@ -43,7 +43,7 @@ python src/dataset_overlap_check.py   # optional: needs data/raw/extra/ (see dat
 | `data/processed/` | Clean tables used by the analysis, the dashboard and SQL |
 | `src/` | Python scripts |
 | `outputs/` | Results (JSON, CSV) and figures for ratings; `outputs/catalog/` for the catalog |
-| `docs/` | Findings, cleaning note, data notes, plan, roles, decision log, contributions |
+| `docs/` | Findings, cleaning note, data notes, plan, roles, contributions |
 | `powerbi/` | Dashboard guide (page-by-page, measures, check values) and the .pbix |
 | `sql/`, `site/` | Kumari's SQL queries and website |
 | `reports/` | Each member's reports (one folder per member) |
@@ -59,5 +59,5 @@ python src/dataset_overlap_check.py   # optional: needs data/raw/extra/ (see dat
 - The files are early-2021 snapshots and are not specific to India. Results describe the data, not the platforms today.
 - File A has one row per movie-genre pair; always use `titles.csv` for counts.
 - Prime Video country is blank for most titles, so origin is analysed for Netflix only.
-- Ratings exist only for movies in file A. No survey data (survey dropped from project scope). Price data template in `data/processed/prices_template.csv`.
+- Ratings exist only for movies in file A. Price data template in `data/processed/prices_template.csv`.
 - Data details: `docs/data_notes.md` and `docs/cleaning_note.md`.

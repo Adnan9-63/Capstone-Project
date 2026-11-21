@@ -116,7 +116,7 @@ Limit: only {num(ib['linked_movies'])} Netflix movies could be linked by title a
 - That one platform is better, or why the differences exist.
 - Anything about today's catalogs, or about India in general (the files are early-2021 snapshots, not India-specific).
 - Anything about Prime Video origin (country is blank for most titles), or about ratings of TV shows (no IMDb for TV).
-- Anything about viewers' preferences (no survey results yet).
+- Anything about viewers' individual preferences or satisfaction.
 """
 open("docs/findings.md", "w").write(findings)
 

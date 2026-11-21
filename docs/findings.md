@@ -61,4 +61,4 @@ Limit: only 2,135 Netflix movies could be linked by title and year; Prime has ju
 - That one platform is better, or why the differences exist.
 - Anything about today's catalogs, or about India in general (the files are early-2021 snapshots, not India-specific).
 - Anything about Prime Video origin (country is blank for most titles), or about ratings of TV shows (no IMDb for TV).
-- Anything about viewers' preferences (no survey results yet).
+- Anything about viewers' individual preferences or satisfaction.

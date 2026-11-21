@@ -13,4 +13,4 @@
 - Link (optional): 78% of A's Netflix movies appear in D (2,135 get an IMDb rating after linking), but only about 9% of A's Prime movies do. So IMDb by origin is possible for Netflix only, as an exploratory extra.
 
 ## Known limits
-Early-2021 snapshots, not specific to India. No survey or price data yet. Genre and age-rating mappings are our proposal (data/mappings/). Details of every cleaning step: docs/cleaning_note.md.
+Early-2021 snapshots, not specific to India. No price data yet. Genre and age-rating mappings are our proposal (data/mappings/). Details of every cleaning step: docs/cleaning_note.md.
