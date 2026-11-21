@@ -19,6 +19,7 @@ reports/*/
 
 # Private / AI workflow files
 docs/handoff_prompt.md
+docs/alka_handoff.md
 
 # Power BI file (binary; share via OneDrive or attach to report submission)
 powerbi/*.pbix
