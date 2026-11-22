@@ -1,0 +1,164 @@
+// =============================================================================
+// Power BI DAX Measures — Comparative Analysis of Netflix & Prime Video
+// Capstone-I, Group 03, IIT Patna
+// Author: Md. Adnan
+// Tables referenced: catalog_titles, catalog_genre_groups, imdb_titles, imdb_genres
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// SECTION 1: CATALOG MEASURES (Source D: Combined_Dataset.csv / catalog_titles)
+// -----------------------------------------------------------------------------
+
+// 1. Total Titles in Catalog
+// Calculates total count of records in the catalog table
+Titles = COUNTROWS(catalog_titles)
+
+// 2. Total Movie Titles
+// Filters catalog titles for movies only
+Movies = 
+CALCULATE(
+    [Titles], 
+    catalog_titles[type] = "Movie"
+)
+
+// 3. Total TV Show Titles
+// Filters catalog titles for TV shows only
+TV Shows = 
+CALCULATE(
+    [Titles], 
+    catalog_titles[type] = "TV Show"
+)
+
+// 4. Movie Share (%)
+// Proportion of total catalog that consists of movies
+// Expected: Netflix = 70.0% (6,124 / 8,797), Prime Video = 81.0% (7,804 / 9,658)
+Movie Share = 
+DIVIDE([Movies], [Titles], 0)
+
+// 5. TV Show Share (%)
+// Proportion of total catalog that consists of TV shows
+// Expected: Netflix = 30.0% (2,673 / 8,797), Prime Video = 19.0% (1,854 / 9,658)
+TV Show Share = 
+DIVIDE([TV Shows], [Titles], 0)
+
+// 6. Median Release Year
+// Median release year of titles in the current filter context
+// Expected: Netflix = 2017, Prime Video = 2016
+Median Release Year = 
+MEDIAN(catalog_titles[release_year])
+
+// 7. Titles Released 2015 or Later (Count)
+Titles 2015 Plus = 
+CALCULATE(
+    [Titles], 
+    catalog_titles[release_year] >= 2015
+)
+
+// 8. Share of Titles Released 2015 or Later (%)
+// Measures catalog recency
+// Expected: Netflix = 71.0%, Prime Video = 56.0%
+Share 2015 Plus = 
+DIVIDE([Titles 2015 Plus], [Titles], 0)
+
+// 9. Median Movie Runtime (Minutes)
+// Calculates median duration in minutes for movies only
+// Expected: Netflix = 98 min, Prime Video = 91 min
+Median Movie Runtime = 
+CALCULATE(
+    MEDIAN(catalog_titles[runtime_min]), 
+    catalog_titles[type] = "Movie"
+)
+
+// 10. Average Movie Runtime (Minutes)
+Average Movie Runtime = 
+CALCULATE(
+    AVERAGE(catalog_titles[runtime_min]), 
+    catalog_titles[type] = "Movie"
+)
+
+// 11. Genre Share (%)
+// Share of titles in the catalog that belong to each mapped genre group
+// IMPORTANT: Use catalog_genre_groups[genre_group] on the axis, and take
+// platform / type slicers from catalog_titles.
+Genre Share = 
+DIVIDE(
+    DISTINCTCOUNT(catalog_genre_groups[catalog_key]), 
+    [Titles], 
+    0
+)
+
+// 12. Adult Rated Titles Share (%)
+// Proportion of titles mapped to 'Adult' age rating
+// Expected: Netflix Movies = 47.0%, Prime Video Movies = 27.0%
+Adult Share = 
+DIVIDE(
+    CALCULATE([Titles], catalog_titles[age_group] = "Adult"),
+    [Titles],
+    0
+)
+
+// 13. Titles on Both Platforms (Count)
+// Titles that appear on both Netflix and Prime Video simultaneously
+Titles On Both = 
+CALCULATE(
+    [Titles],
+    catalog_titles[on_both] = TRUE()
+)
+
+
+// -----------------------------------------------------------------------------
+// SECTION 2: RATINGS MEASURES (Source A: ott_cleaned.csv / imdb_titles)
+// -----------------------------------------------------------------------------
+
+// 14. Total Movies in IMDb Dataset
+IMDb Total Movies = COUNTROWS(imdb_titles)
+
+// 15. Count of Movies with Valid IMDb Rating
+// Expected: Netflix = 2,725, Prime Video = 12,301
+Rated Titles = 
+COUNT(imdb_titles[imdb])
+
+// 16. Median IMDb Rating
+// Expected: Netflix = 6.3, Prime Video = 6.0
+Median IMDb = 
+MEDIAN(imdb_titles[imdb])
+
+// 17. Average (Mean) IMDb Rating
+// Expected: Netflix = 6.23, Prime Video = 5.82 (Difference = +0.41 in favor of Netflix)
+Mean IMDb = 
+AVERAGE(imdb_titles[imdb])
+
+// 18. Highly Rated Movies Count (IMDb >= 7.0)
+High Rated Count = 
+CALCULATE(
+    COUNT(imdb_titles[imdb]), 
+    imdb_titles[imdb] >= 7.0
+)
+
+// 19. Highly Rated Share (%) (IMDb >= 7.0)
+// Expected: Netflix = 27.3%, Prime Video = 20.7%
+Share 7 Plus = 
+DIVIDE([High Rated Count], [Rated Titles], 0)
+
+// 20. Low Rated Movies Count (IMDb < 5.0)
+Low Rated Count = 
+CALCULATE(
+    COUNT(imdb_titles[imdb]), 
+    imdb_titles[imdb] < 5.0
+)
+
+// 21. Low Rated Share (%) (IMDb < 5.0)
+// Prime has double the share of low-rated titles
+// Expected: Netflix = 12.0%, Prime Video = 24.3%
+Share Below 5 = 
+DIVIDE([Low Rated Count], [Rated Titles], 0)
+
+// 22. Top Tier Movies Share (%) (IMDb >= 8.0)
+// At the very top, the platforms are very close
+// Expected: Netflix = 4.3%, Prime Video = 3.5%
+Share 8 Plus = 
+DIVIDE(
+    CALCULATE(COUNT(imdb_titles[imdb]), imdb_titles[imdb] >= 8.0),
+    [Rated Titles],
+    0
+)

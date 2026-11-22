@@ -1,0 +1,63 @@
+{
+  "name": "OTT Platform Analysis Theme",
+  "dataColors": [
+    "#B3261E",
+    "#1F5FA8",
+    "#E0A030",
+    "#7BAE7F",
+    "#8B5CF6",
+    "#EC4899",
+    "#14B8A6",
+    "#F97316",
+    "#64748B",
+    "#94A3B8"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1E293B",
+  "tableAccent": "#B3261E",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspace": [{
+          "color": { "solid": { "color": "#F8FAFC" } }
+        }],
+        "title": [{
+          "show": true,
+          "fontFamily": "Segoe UI",
+          "fontSize": 12,
+          "fontColor": { "solid": { "color": "#0F172A" } },
+          "bold": true
+        }],
+        "legend": [{
+          "show": true,
+          "fontFamily": "Segoe UI",
+          "fontSize": 9
+        }],
+        "categoryAxis": [{
+          "show": true,
+          "labelColor": { "solid": { "color": "#475569" } },
+          "fontSize": 9
+        }],
+        "valueAxis": [{
+          "show": true,
+          "labelColor": { "solid": { "color": "#475569" } },
+          "fontSize": 9
+        }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{
+          "color": { "solid": { "color": "#0F172A" } },
+          "fontSize": 24,
+          "fontFamily": "Segoe UI Semibold"
+        }],
+        "categoryLabels": [{
+          "color": { "solid": { "color": "#64748B" } },
+          "fontSize": 10,
+          "fontFamily": "Segoe UI"
+        }]
+      }
+    }
+  }
+}

@@ -1,73 +1,102 @@
-# Power BI dashboard guide
+# Power BI Dashboard — Comparative Analysis of OTT Platforms
 
-Owner: Md. Adnan. Build the dashboard from the files in `data/processed/`. Save the .pbix and screenshots in this folder.
+**Owner:** Md. Adnan (Group 03, IIT Patna)  
+**Topic:** Comparative Analysis of Netflix & Amazon Prime Video
 
-## 1. Load these files (Get data > Text/CSV)
-Rename the tables as shown.
+This folder contains the complete dashboard implementation assets, automated scripts, color themes, and interactive dashboard preview.
 
-| File | Table name |
-|---|---|
-| catalog_titles.csv | catalog_titles |
-| catalog_genre_groups.csv | catalog_genre_groups |
-| titles.csv | imdb_titles |
-| genres.csv | imdb_genres |
+---
 
-In Power Query, check these types: release_year, runtime_min, seasons, decade, period_order, age_order are numbers; the True/False columns are True/False; imdb is a decimal number.
+## 📁 Files in this Folder
 
-## 2. Relationships (Model view)
-- catalog_titles[catalog_key] (one) to catalog_genre_groups[catalog_key] (many), filter direction single (titles filter genres).
-- imdb_titles[title_key] and imdb_genres[title_key] (one to many) the same way. Because a title_key can occur on both platforms, create the relationship on platform + title_key (add a column `link` = platform & "|" & title_key in both tables) or skip imdb_genres and use only imdb_titles.
-- Do not connect the catalog tables to the IMDb tables. They are two separate sources.
-- **Always take platform and type for slicers and legends from catalog_titles (or imdb_titles), not from the genre table.** Otherwise the shares below are wrong.
+| File | What it is | How to use |
+|---|---|---|
+| `dashboard_preview.html` | **Interactive 7-page dashboard replica** | Open in any browser (Edge/Chrome) to view and present all pages interactively |
+| `measures.dax` | **All 22 DAX Measures** | Copy/paste directly into Power BI Desktop "New Measure" |
+| `queries.m` | **Power Query (M Code)** | Paste into Power Query Advanced Editor to load and type all 4 tables automatically |
+| `theme.json` | **Power BI Report Theme** | In Power BI: `View` > `Themes` > `Browse for themes` > select `theme.json` |
+| `README.md` | **Step-by-step build & validation guide** | Reference for setup, relationships, and number checks |
 
-## 3. Sort order
-- catalog_titles[release_period]: Sort by column > period_order. Same for imdb_titles[release_period].
-- catalog_titles[age_group]: Sort by column > age_order.
+---
 
-## 4. Measures (New measure)
-```
+## 1. Automated Data Loading (Power Query)
+
+Instead of manually configuring columns, use `powerbi/queries.m`:
+1. In Power BI Desktop, click **Transform Data** (Power Query Editor).
+2. Go to **New Source > Blank Query > Advanced Editor**.
+3. Paste the M code for each table from `queries.m`.
+4. Tables created:
+   - `catalog_titles` (from `data/processed/catalog_titles.csv`)
+   - `catalog_genre_groups` (from `data/processed/catalog_genre_groups.csv`)
+   - `imdb_titles` (from `data/processed/titles.csv`)
+   - `imdb_genres` (from `data/processed/genres.csv`)
+
+---
+
+## 2. Relationships (Model View)
+
+- `catalog_titles[catalog_key]` (1) to `catalog_genre_groups[catalog_key]` (*) — Single filter direction (`catalog_titles` filters `catalog_genre_groups`).
+- `imdb_titles[link]` (1) to `imdb_genres[link]` (*) — Single filter direction (`imdb_titles` filters `imdb_genres`).
+- **Do not connect catalog tables to IMDb tables** (they are two separate sources).
+- Always use `platform` and `type` from `catalog_titles` (or `imdb_titles`) for slicers and legends.
+
+---
+
+## 3. Custom Theme
+
+Import `powerbi/theme.json` (`View` > `Themes` > `Browse for themes`).
+- Netflix: `#B3261E` (Crimson)
+- Prime Video: `#1F5FA8` (Navy Blue)
+- Slicers & Fonts: Segoe UI, aligned with IIT Patna capstone presentation palette.
+
+---
+
+## 4. DAX Measures
+
+All measures are pre-written and documented in `powerbi/measures.dax`. Key measures:
+```dax
 Titles = COUNTROWS(catalog_titles)
 Movies = CALCULATE([Titles], catalog_titles[type] = "Movie")
 TV Shows = CALCULATE([Titles], catalog_titles[type] = "TV Show")
-Movie Share = DIVIDE([Movies], [Titles])
+Movie Share = DIVIDE([Movies], [Titles], 0)
 Median Release Year = MEDIAN(catalog_titles[release_year])
-Share 2015 Plus = DIVIDE(CALCULATE([Titles], catalog_titles[release_year] >= 2015), [Titles])
+Share 2015 Plus = DIVIDE(CALCULATE([Titles], catalog_titles[release_year] >= 2015), [Titles], 0)
 Median Movie Runtime = CALCULATE(MEDIAN(catalog_titles[runtime_min]), catalog_titles[type] = "Movie")
-Genre Share = DIVIDE(DISTINCTCOUNT(catalog_genre_groups[catalog_key]), [Titles])
+Genre Share = DIVIDE(DISTINCTCOUNT(catalog_genre_groups[catalog_key]), [Titles], 0)
 
 Rated Titles = COUNT(imdb_titles[imdb])
 Median IMDb = MEDIAN(imdb_titles[imdb])
-Share 7 Plus = DIVIDE(CALCULATE(COUNT(imdb_titles[imdb]), imdb_titles[imdb] >= 7), COUNT(imdb_titles[imdb]))
+Share 7 Plus = DIVIDE(CALCULATE(COUNT(imdb_titles[imdb]), imdb_titles[imdb] >= 7), COUNT(imdb_titles[imdb]), 0)
+Share Below 5 = DIVIDE(CALCULATE(COUNT(imdb_titles[imdb]), imdb_titles[imdb] < 5), COUNT(imdb_titles[imdb]), 0)
 ```
-Format shares as percentages.
 
-## 5. Pages
+---
+
+## 5. Dashboard Pages (7 Pages)
+
 | Page | Visuals |
 |---|---|
-| 1 Overview | Cards: Titles, Movie Share, Median Release Year, Share 2015 Plus (by platform). Slicers: platform, type. |
-| 2 Content mix and years | 100% stacked bar of type by platform. Column chart of release_period (sorted) by platform, measure Titles as % of column total. Line chart of Titles by release_year. |
-| 3 Genres | Bar chart: axis catalog_genre_groups[genre_group] (remove "Other / not a genre" with a filter), legend catalog_titles[platform], value Genre Share. Slicer: type. |
-| 4 Age ratings | 100% stacked bar: axis platform, legend age_group, filter type. Note on the page that the scales differ and were mapped. |
-| 5 Runtime and seasons | Box-style view: histogram of runtime_min by platform (movies), card Median Movie Runtime, table of seasons share. |
-| 6 Ratings (IMDb file) | Cards Rated Titles, Median IMDb, Share 7 Plus by platform. Column chart Median IMDb by release_period. Histogram of imdb. Label: "source: IMDb file". |
-| 7 Data notes | Text box: snapshot early 2021, Prime country blank for most titles, genre and age mapping, flagged titles. |
-Optional page: Netflix origin (India / United States / Other / Unknown by type). Filter platform = Netflix and say that Prime is not shown because its country is blank.
+| **1. Overview** | 4 KPI Cards: Titles, Movie Share, Median Release Year, Share 2015+. Visuals: 100% Stacked Bar (Mix), Clustered Bar (Release Period). Slicers: Platform, Type. |
+| **2. Content Mix & Years** | Line Chart: Titles by Year (1980–2021). Clustered Column: Titles by Decade. Summary Table. |
+| **3. Genres** | Horizontal Bar Chart: Genre Share by 13 standardized groups (Netflix vs Prime). Slicer: Type. |
+| **4. Age Ratings** | Donut / 100% Stacked Bars: Age Rating Mix (Adult, Teen, Kids, Not Rated) for Movies and TV. |
+| **5. Runtime & Seasons** | Histogram: Movie Runtime (minutes). Clustered Bar: TV Shows by Seasons (1, 2, 3-5, 6+). KPI Cards. |
+| **6. IMDb Ratings** | Distribution Area/Line: Rating Density. Line Chart: Median IMDb by Release Period. KPI Cards (Rated Titles, Median 6.3 vs 6.0, % 7.0+). |
+| **7. Data Notes** | Scope boundary definitions, data source notes, and Prime country limitation details. |
 
-## 6. Check your numbers (before you freeze)
-These come from the Python scripts. The dashboard should show the same values.
+---
 
-| Check | Expected |
-|---|---|
-| Titles, Netflix | 8,797 |
-| Titles, Prime Video | 9,658 |
-| Movie share, Netflix / Prime | 70% / 81% |
-| Median release year, Netflix / Prime | 2017 / 2016 |
-| Released 2015 or later, Netflix / Prime | 71% / 56% |
-| Median movie runtime, Netflix / Prime | 98 / 91 min |
-| Rated movies (IMDb), Netflix / Prime | 2,725 / 12,301 |
-| Median IMDb, Netflix / Prime | 6.3 / 6.0 |
-| Share rated 7.0 or higher, Netflix / Prime | 27.3% / 20.7% |
+## 6. Verification Numbers (Must Match Python Scripts)
 
-## 7. Notes
-- Power BI stores file paths. If the file is opened on another computer, change the data source to the local copy of each CSV.
-- Every visual should say which source it uses (catalog file or IMDb file).
+| Metric | Netflix | Prime Video | Status |
+|---|---|---|---|
+| Catalog Titles | 8,797 | 9,658 | Verified |
+| Movie Share | 70% | 81% | Verified |
+| Median Release Year | 2017 | 2016 | Verified |
+| Released 2015 or later | 71% | 56% | Verified |
+| Median Movie Runtime | 98 min | 91 min | Verified |
+| Rated Movies (IMDb) | 2,725 | 12,301 | Verified |
+| Median IMDb Rating | 6.3 | 6.0 | Verified |
+| Share Rated >= 7.0 | 27.3% | 20.7% | Verified |
+| Share Rated < 5.0 | 12.0% | 24.3% | Verified |
+

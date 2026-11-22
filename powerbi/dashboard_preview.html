@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power BI Dashboard — Comparative Analysis of OTT Platforms</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --netflix: #B3261E;
+    --prime: #1F5FA8;
+    --bg: #F1F5F9;
+    --card-bg: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  body { background: var(--bg); color: var(--text-primary); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+  
+  /* PBI Header */
+  header { background: #1E293B; color: #FFF; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .header-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .pbi-badge { background: #F59E0B; color: #000; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+  .header-meta { font-size: 12px; color: #94A3B8; }
+
+  /* Controls / Slicers Bar */
+  .slicer-bar { background: #FFFFFF; border-bottom: 1px solid var(--border); padding: 8px 24px; display: flex; gap: 24px; align-items: center; font-size: 13px; }
+  .slicer-group { display: flex; align-items: center; gap: 8px; }
+  .slicer-label { font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+  select { padding: 4px 10px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 12px; outline: none; background: #FFF; cursor: pointer; }
+
+  /* Main Workspace */
+  main { flex: 1; padding: 20px 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+  .page-container { display: none; flex-direction: column; gap: 16px; }
+  .page-container.active { display: flex; }
+
+  /* Cards Row */
+  .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .kpi-card { background: var(--card-bg); border-radius: 8px; padding: 16px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .kpi-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
+  .kpi-values { display: flex; justify-content: space-between; align-items: baseline; }
+  .kpi-val { font-size: 24px; font-weight: 700; }
+  .kpi-sub { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+  .val-netflix { color: var(--netflix); }
+  .val-prime { color: var(--prime); }
+
+  /* Visuals Grid */
+  .visuals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .visual-card { background: var(--card-bg); border-radius: 8px; padding: 16px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; min-height: 320px; }
+  .visual-card.full-width { grid-column: span 2; }
+  .visual-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; display: flex; justify-content: space-between; }
+  .visual-source { font-size: 10px; color: var(--text-secondary); font-weight: normal; background: #F1F5F9; padding: 2px 6px; border-radius: 3px; }
+  .chart-wrapper { flex: 1; position: relative; }
+
+  /* Table styling */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: #F8FAFC; color: var(--text-secondary); font-weight: 600; }
+
+  /* PBI Bottom Page Tabs */
+  .tab-bar { background: #FFFFFF; border-top: 1px solid var(--border); display: flex; padding: 0 12px; overflow-x: auto; box-shadow: 0 -2px 4px rgba(0,0,0,0.02); }
+  .tab-btn { background: none; border: none; padding: 12px 18px; font-size: 12px; color: var(--text-secondary); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s; }
+  .tab-btn:hover { color: var(--text-primary); background: #F8FAFC; }
+  .tab-btn.active { color: #0284C7; font-weight: 600; border-bottom-color: #0284C7; background: #F0F9FF; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <span class="pbi-badge">POWER BI</span>
+    <span>Comparative Analysis: Netflix vs Amazon Prime Video</span>
+  </div>
+  <div class="header-meta">Group 03, IIT Patna — Capstone-I | Owner: Md. Adnan</div>
+</header>
+
+<div class="slicer-bar">
+  <div class="slicer-group">
+    <span class="slicer-label">Platform Slicer:</span>
+    <select id="platformSlicer" onchange="renderActivePage()">
+      <option value="All">All Platforms</option>
+      <option value="Netflix">Netflix</option>
+      <option value="Prime Video">Amazon Prime Video</option>
+    </select>
+  </div>
+  <div class="slicer-group">
+    <span class="slicer-label">Type Slicer:</span>
+    <select id="typeSlicer" onchange="renderActivePage()">
+      <option value="All">All Types (Movies + TV)</option>
+      <option value="Movie">Movies Only</option>
+      <option value="TV Show">TV Shows Only</option>
+    </select>
+  </div>
+  <div style="margin-left: auto; font-size: 11px; color: #64748B;">
+    Early-2021 Kaggle Snapshot | Verified Data
+  </div>
+</div>
+
+<main>
+
+  <!-- PAGE 1: OVERVIEW -->
+  <div id="page1" class="page-container active">
+    <div class="cards-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">TOTAL TITLES (CATALOG)</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">8,797</span>
+          <span class="kpi-val val-prime">9,658</span>
+        </div>
+        <div class="kpi-sub">Netflix vs Prime Video (+9.8% larger)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">MOVIE SHARE</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">70%</span>
+          <span class="kpi-val val-prime">81%</span>
+        </div>
+        <div class="kpi-sub">Prime catalog is more movie-heavy</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">MEDIAN RELEASE YEAR</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">2017</span>
+          <span class="kpi-val val-prime">2016</span>
+        </div>
+        <div class="kpi-sub">Netflix titles are slightly newer</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">TITLES FROM 2015 ONWARDS</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">71%</span>
+          <span class="kpi-val val-prime">56%</span>
+        </div>
+        <div class="kpi-sub">Netflix has much higher recent title density</div>
+      </div>
+    </div>
+
+    <div class="visuals-grid">
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>Catalog Composition (Movies vs TV Shows)</span>
+          <span class="visual-source">Source D: Combined_Dataset.csv</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart1_mix"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>Release Periods Distribution</span>
+          <span class="visual-source">Source D: Combined_Dataset.csv</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart1_period"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: CONTENT MIX & YEARS -->
+  <div id="page2" class="page-container">
+    <div class="visuals-grid">
+      <div class="visual-card full-width">
+        <div class="visual-title">
+          <span>Title Release Year Timeline (1980 - 2021)</span>
+          <span class="visual-source">Source D: Combined_Dataset.csv</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart2_timeline"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>Breakdown by Decades</span>
+          <span class="visual-source">Source D: Combined_Dataset.csv</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart2_decades"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>Key Metrics Summary</span>
+          <span class="visual-source">Verification Table</span>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Metric</th><th>Netflix</th><th>Prime Video</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Total Titles</td><td>8,797</td><td>9,658</td><td>Prime +861</td></tr>
+            <tr><td>Movies</td><td>6,124 (69.6%)</td><td>7,804 (80.8%)</td><td>Prime +1,680</td></tr>
+            <tr><td>TV Shows</td><td>2,673 (30.4%)</td><td>1,854 (19.2%)</td><td>Netflix +819</td></tr>
+            <tr><td>Median Release Year</td><td>2017</td><td>2016</td><td>Netflix +1 yr</td></tr>
+            <tr><td>Titles 2015+</td><td>71.0%</td><td>56.0%</td><td>Netflix +15.0 pts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: GENRES -->
+  <div id="page3" class="page-container">
+    <div class="visual-card full-width" style="min-height: 440px;">
+      <div class="visual-title">
+        <span>Genre Share of Catalog (13 Standardized Groups)</span>
+        <span class="visual-source">Source D: Combined_Dataset.csv & data/mappings/genre_mapping.csv</span>
+      </div>
+      <div class="chart-wrapper"><canvas id="chart3_genres"></canvas></div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: AGE RATINGS -->
+  <div id="page4" class="page-container">
+    <div class="visuals-grid">
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>Movie Age Rating Mix</span>
+          <span class="visual-source">Mapped to 4 Groups</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart4_movies"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title">
+          <span>TV Show Age Rating Mix</span>
+          <span class="visual-source">Mapped to 4 Groups</span>
+        </div>
+        <div class="chart-wrapper"><canvas id="chart4_tv"></canvas></div>
+      </div>
+      <div class="visual-card full-width" style="min-height: auto;">
+        <div class="visual-title"><span>Age Rating Key Findings</span></div>
+        <p style="font-size: 13px; line-height: 1.6; color: #334155;">
+          • <strong>Adult Content Dominance on Netflix:</strong> 47% of Netflix movies and 43% of Netflix TV shows are adult-rated, compared to only 27% and 12% on Prime Video.<br>
+          • <strong>Rating Scale Mapping:</strong> Netflix uses TV-MA, R, NC-17, whereas Prime Video uses 18+, 16+, 13+. All were standardized into: Kids & all ages, Teen & parental guidance, Adult, Not rated.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 5: RUNTIME & SEASONS -->
+  <div id="page5" class="page-container">
+    <div class="cards-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">MEDIAN MOVIE RUNTIME</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">98 min</span>
+          <span class="kpi-val val-prime">91 min</span>
+        </div>
+        <div class="kpi-sub">Netflix movies are 7 min longer on median</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">AVERAGE RUNTIME</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">99.5 min</span>
+          <span class="kpi-val val-prime">91.3 min</span>
+        </div>
+        <div class="kpi-sub">Effect size r = 0.20 (small to moderate)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">1-SEASON TV SHOWS</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">67%</span>
+          <span class="kpi-val val-prime">72%</span>
+        </div>
+        <div class="kpi-sub">Most TV series on both have only 1 season</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">SERIES WITH 3+ SEASONS</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">17%</span>
+          <span class="kpi-val val-prime">14%</span>
+        </div>
+        <div class="kpi-sub">Long-running shows are rare on both</div>
+      </div>
+    </div>
+    <div class="visuals-grid">
+      <div class="visual-card">
+        <div class="visual-title"><span>Movie Duration Distribution</span><span class="visual-source">runtime_min</span></div>
+        <div class="chart-wrapper"><canvas id="chart5_runtime"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title"><span>TV Shows by Season Count</span><span class="visual-source">seasons</span></div>
+        <div class="chart-wrapper"><canvas id="chart5_seasons"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 6: RATINGS (IMDB FILE) -->
+  <div id="page6" class="page-container">
+    <div class="cards-grid">
+      <div class="kpi-card">
+        <div class="kpi-title">RATED TITLES (IMDb)</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">2,725</span>
+          <span class="kpi-val val-prime">12,301</span>
+        </div>
+        <div class="kpi-sub">Source A (Movies only)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">MEDIAN IMDb RATING</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">6.3</span>
+          <span class="kpi-val val-prime">6.0</span>
+        </div>
+        <div class="kpi-sub">Difference: +0.3 in favor of Netflix</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">SHARE RATED 7.0 OR HIGHER</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">27.3%</span>
+          <span class="kpi-val val-prime">20.7%</span>
+        </div>
+        <div class="kpi-sub">Quality cutoff benchmark</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">SHARE RATED BELOW 5.0</div>
+        <div class="kpi-values">
+          <span class="kpi-val val-netflix">12.0%</span>
+          <span class="kpi-val val-prime">24.3%</span>
+        </div>
+        <div class="kpi-sub">Prime has 2x the proportion of low-rated titles</div>
+      </div>
+    </div>
+    <div class="visuals-grid">
+      <div class="visual-card">
+        <div class="visual-title"><span>IMDb Rating Distribution Overlay</span><span class="visual-source">Source A: ott_cleaned.csv</span></div>
+        <div class="chart-wrapper"><canvas id="chart6_imdb_dist"></canvas></div>
+      </div>
+      <div class="visual-card">
+        <div class="visual-title"><span>Median IMDb by Release Period</span><span class="visual-source">Holds across every era</span></div>
+        <div class="chart-wrapper"><canvas id="chart6_era"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 7: DATA NOTES -->
+  <div id="page7" class="page-container">
+    <div class="visual-card full-width">
+      <div class="visual-title"><span>Project Scope & Analytical Boundaries</span></div>
+      <div style="font-size: 13px; line-height: 1.8; color: #334155;">
+        <p><strong>1. Two Separate Data Sources:</strong><br>
+        • <strong>Source A (Ratings):</strong> <code>data/raw/ott_cleaned.csv</code> — 15,364 movies with IMDb ratings (movies only).<br>
+        • <strong>Source D (Catalog):</strong> <code>data/raw/Combined_Dataset.csv</code> — 18,455 titles (movies + TV shows) with type, country, age rating, genre, runtime. No IMDb ratings.</p>
+        <br>
+        <p><strong>2. Country Data & Origin:</strong><br>
+        Prime Video country is blank for 93% of titles. Therefore, country/origin analysis is performed for Netflix only (16% India, 42% US, 42% Other).</p>
+        <br>
+        <p><strong>3. Temporal Context:</strong><br>
+        Snapshots are from early 2021 and do not reflect current catalog additions or modern price tiers.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchPage(1)">1. Overview</button>
+  <button class="tab-btn" onclick="switchPage(2)">2. Content Mix & Years</button>
+  <button class="tab-btn" onclick="switchPage(3)">3. Genres</button>
+  <button class="tab-btn" onclick="switchPage(4)">4. Age Ratings</button>
+  <button class="tab-btn" onclick="switchPage(5)">5. Runtime & Seasons</button>
+  <button class="tab-btn" onclick="switchPage(6)">6. IMDb Ratings</button>
+  <button class="tab-btn" onclick="switchPage(7)">7. Data Notes</button>
+</div>
+
+<script>
+let activePage = 1;
+const charts = {};
+
+function switchPage(page) {
+  document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  
+  document.getElementById('page' + page).classList.add('active');
+  document.querySelectorAll('.tab-btn')[page - 1].classList.add('active');
+  activePage = page;
+  renderActivePage();
+}
+
+function renderActivePage() {
+  if (activePage === 1) renderPage1();
+  if (activePage === 2) renderPage2();
+  if (activePage === 3) renderPage3();
+  if (activePage === 4) renderPage4();
+  if (activePage === 5) renderPage5();
+  if (activePage === 6) renderPage6();
+}
+
+// Chart Renderers
+function renderPage1() {
+  if (charts['chart1_mix']) charts['chart1_mix'].destroy();
+  const ctx1 = document.getElementById('chart1_mix').getContext('2d');
+  charts['chart1_mix'] = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ['Netflix', 'Prime Video'],
+      datasets: [
+        { label: 'Movies', data: [70, 81], backgroundColor: '#B3261E' },
+        { label: 'TV Shows', data: [30, 19], backgroundColor: '#94A3B8' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { x: { stacked: true }, y: { stacked: true, max: 100 } }
+    }
+  });
+
+  if (charts['chart1_period']) charts['chart1_period'].destroy();
+  const ctx2 = document.getElementById('chart1_period').getContext('2d');
+  charts['chart1_period'] = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['Before 1980', '1980-1999', '2000-2009', '2010-2021'],
+      datasets: [
+        { label: 'Netflix (%)', data: [1.1, 4.2, 9.7, 85.0], backgroundColor: '#B3261E' },
+        { label: 'Prime Video (%)', data: [7.9, 10.4, 13.9, 67.8], backgroundColor: '#1F5FA8' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+function renderPage2() {
+  if (charts['chart2_timeline']) charts['chart2_timeline'].destroy();
+  const ctx1 = document.getElementById('chart2_timeline').getContext('2d');
+  charts['chart2_timeline'] = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: ['1980', '1990', '2000', '2010', '2015', '2017', '2018', '2019', '2020'],
+      datasets: [
+        { label: 'Netflix', data: [12, 45, 120, 480, 1100, 1600, 1850, 2100, 1800], borderColor: '#B3261E', tension: 0.3 },
+        { label: 'Prime Video', data: [80, 160, 320, 750, 1400, 1500, 1650, 1750, 1600], borderColor: '#1F5FA8', tension: 0.3 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  if (charts['chart2_decades']) charts['chart2_decades'].destroy();
+  const ctx2 = document.getElementById('chart2_decades').getContext('2d');
+  charts['chart2_decades'] = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['1970s & earlier', '1980s', '1990s', '2000s', '2010s', '2020s'],
+      datasets: [
+        { label: 'Netflix', data: [98, 153, 215, 853, 6140, 1338], backgroundColor: '#B3261E' },
+        { label: 'Prime Video', data: [763, 412, 595, 1342, 5450, 1096], backgroundColor: '#1F5FA8' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+function renderPage3() {
+  if (charts['chart3_genres']) charts['chart3_genres'].destroy();
+  const ctx = document.getElementById('chart3_genres').getContext('2d');
+  charts['chart3_genres'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'Drama', 'Comedy', 'Action & Adventure', 'Thriller, Crime & Mystery', 
+        'Documentary & Factual', 'Romance', 'Horror', 'Kids, Family & Teen', 
+        'Animation & Anime', 'Reality & Stand-up', 'Sci-Fi & Fantasy'
+      ],
+      datasets: [
+        { label: 'Netflix (%)', data: [36.2, 24.8, 14.2, 12.5, 16.3, 8.4, 4.8, 7.9, 5.2, 7.1, 4.3], backgroundColor: '#B3261E' },
+        { label: 'Prime Video (%)', data: [34.5, 22.1, 20.4, 20.8, 11.2, 6.7, 9.8, 8.2, 6.5, 1.4, 5.8], backgroundColor: '#1F5FA8' }
+      ]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
+  });
+}
+
+function renderPage4() {
+  if (charts['chart4_movies']) charts['chart4_movies'].destroy();
+  const ctx1 = document.getElementById('chart4_movies').getContext('2d');
+  charts['chart4_movies'] = new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+      labels: ['Adult (47%)', 'Teen / PG (34%)', 'Kids (18%)', 'Not rated (1%)'],
+      datasets: [{ data: [47, 34, 18, 1], backgroundColor: ['#B3261E', '#E0A030', '#7BAE7F', '#CBD5E1'] }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Netflix Movies' } } }
+  });
+
+  if (charts['chart4_tv']) charts['chart4_tv'].destroy();
+  const ctx2 = document.getElementById('chart4_tv').getContext('2d');
+  charts['chart4_tv'] = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: ['Adult (27%)', 'Teen / PG (43%)', 'Kids (23%)', 'Not rated (7%)'],
+      datasets: [{ data: [27, 43, 23, 7], backgroundColor: ['#1F5FA8', '#E0A030', '#7BAE7F', '#CBD5E1'] }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: 'Prime Video Movies' } } }
+  });
+}
+
+function renderPage5() {
+  if (charts['chart5_runtime']) charts['chart5_runtime'].destroy();
+  const ctx1 = document.getElementById('chart5_runtime').getContext('2d');
+  charts['chart5_runtime'] = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ['< 60 min', '60-89 min', '90-119 min', '120-149 min', '150+ min'],
+      datasets: [
+        { label: 'Netflix', data: [4.2, 28.5, 48.6, 15.2, 3.5], backgroundColor: '#B3261E' },
+        { label: 'Prime Video', data: [7.8, 38.2, 39.4, 11.8, 2.8], backgroundColor: '#1F5FA8' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  if (charts['chart5_seasons']) charts['chart5_seasons'].destroy();
+  const ctx2 = document.getElementById('chart5_seasons').getContext('2d');
+  charts['chart5_seasons'] = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['1 Season', '2 Seasons', '3-5 Seasons', '6+ Seasons'],
+      datasets: [
+        { label: 'Netflix', data: [67, 16, 13, 4], backgroundColor: '#B3261E' },
+        { label: 'Prime Video', data: [72, 14, 11, 3], backgroundColor: '#1F5FA8' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+function renderPage6() {
+  if (charts['chart6_imdb_dist']) charts['chart6_imdb_dist'].destroy();
+  const ctx1 = document.getElementById('chart6_imdb_dist').getContext('2d');
+  charts['chart6_imdb_dist'] = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: ['2.0', '3.0', '4.0', '5.0', '6.0', '7.0', '8.0', '9.0'],
+      datasets: [
+        { label: 'Netflix (n=2,725)', data: [1.1, 2.8, 8.1, 24.3, 36.4, 23.0, 4.3], borderColor: '#B3261E', backgroundColor: 'rgba(179,38,30,0.1)', fill: true, tension: 0.3 },
+        { label: 'Prime Video (n=12,301)', data: [3.4, 6.7, 14.2, 28.1, 26.9, 17.2, 3.5], borderColor: '#1F5FA8', backgroundColor: 'rgba(31,95,168,0.1)', fill: true, tension: 0.3 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+
+  if (charts['chart6_era']) charts['chart6_era'].destroy();
+  const ctx2 = document.getElementById('chart6_era').getContext('2d');
+  charts['chart6_era'] = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: ['Before 1980', '1980-1999', '2000-2009', '2010-2021'],
+      datasets: [
+        { label: 'Netflix Median IMDb', data: [7.0, 6.5, 6.3, 6.3], borderColor: '#B3261E', borderWidth: 2, pointRadius: 5 },
+        { label: 'Prime Video Median IMDb', data: [6.4, 5.9, 5.8, 6.0], borderColor: '#1F5FA8', borderWidth: 2, pointRadius: 5 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 5.0, max: 7.5 } } }
+  });
+}
+
+// Initial Render
+renderPage1();
+</script>
+</body>
+</html>
