@@ -5,7 +5,7 @@ Capstone-I project, Group 03, IIT Patna.
 We compare Netflix and Amazon Prime Video using public Kaggle data (early-2021 snapshots) and present the results in a Power BI dashboard and a website.
 Two data sources are used and kept separate:
 
-- **A, ratings:** `data/raw/ott_cleaned.csv`.  (collected by ajeet) 15,364 movies with IMDb ratings (movies only).
+- **A, ratings:** `data/raw/ott_cleaned.csv`.  (collected by Ajeet) 15,364 movies with IMDb ratings (movies only).
 - **D, catalog:** `data/raw/Combined_Dataset.csv` (combined by Alka from the Prime and Netflix title files). 18,455 titles after cleaning, movies and TV shows, with type, country, age rating, genre and runtime.
 
 ## Team
